@@ -1,9 +1,10 @@
 package br.com.caelum.leilao.servico;
 
+//import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertEquals;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
@@ -17,7 +18,6 @@ import br.com.caelum.builder.CriadorDeLeilao;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
-import br.com.caelum.leilao.servico.Avaliador;
 
 public class AvaliadorTest {
 
@@ -78,9 +78,12 @@ public class AvaliadorTest {
 		assertEquals(400.0, leiloeiro.getMaiorLance(), 0.00001);
 		assertEquals(250.0, leiloeiro.getMenorLance(), 0.00001);
 		
+		// is(): é um método do Hamcrest
+		assertThat(leiloeiro.getMaiorLance(), is(400.0));
+		assertThat(leiloeiro.getMenorLance(), is(250.0));
 		// melhorando a legibilidade com Hamcrest
-		assertThat(leiloeiro.getMaiorLance(), equalTo(400.0));
-		assertThat(leiloeiro.getMenorLance(), equalTo(250.0));
+//		assertThat(leiloeiro.getMaiorLance(), equalTo(400.0));
+//		assertThat(leiloeiro.getMenorLance(), equalTo(250.0));
 	}
 
 	@Test
@@ -97,7 +100,8 @@ public class AvaliadorTest {
 
 		// parte 3: avaliacao
 		assertEquals(300.0, leiloeiro.getMedia(), 0.00001);
-
+		// is(): método do Hamcrest
+		assertThat(leiloeiro.getMedia(), is(300.0));
 	}
 	
 	@Test
@@ -113,6 +117,9 @@ public class AvaliadorTest {
 		// parte 3: avaliacao
 		assertEquals(2000.0, leiloeiro.getMaiorLance(), 0.00001);
 		assertEquals(2000.0, leiloeiro.getMenorLance(), 0.00001);
+		// usando uma abordagem mais legivel
+		assertThat(leiloeiro.getMaiorLance(), is(2000.0));
+		assertThat(leiloeiro.getMenorLance(), is(2000.0));
 	}
 
 	@Test
@@ -172,6 +179,9 @@ public class AvaliadorTest {
 		assertEquals(2, maiores.size());
 		assertEquals(200, maiores.get(0).getValor(), 0.00001);
 		assertEquals(100, maiores.get(1).getValor(), 0.00001);
+		// melhorando legibilidade
+		assertThat(maiores.get(0).getValor(), is(200.0));
+		assertThat(maiores.get(1).getValor(), is(100.0));
 	}
 
 }

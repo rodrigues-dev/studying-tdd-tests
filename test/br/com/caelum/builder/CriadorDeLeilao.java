@@ -21,5 +21,10 @@ public class CriadorDeLeilao {
 	public Leilao constroi() {
 		return leilao;
 	}
+
+	public CriadorDeLeilao dobraLance(Usuario usuario) {
+		leilao.dobraLance(usuario);
+		return this;
+	}
 	
 }
